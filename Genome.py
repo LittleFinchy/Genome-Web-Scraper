@@ -34,4 +34,24 @@ for row in data:
     for data_point in row_data:
         table_row.append(data_point.text[:-1])
     table_rows.append(table_row)
-print(table_rows)
+#print(table_rows)
+
+filename = 'genome_table.csv'
+f = open(filename, 'w')
+
+header_string = ''
+for item in header_titles:
+    header_string += item + ','
+header_string = header_string[:-1]# + '\n'
+header_string += '\n'
+
+f.write(header_string)
+
+for row in table_rows:
+    row_string = ''
+    for col in row:
+        col.replace("\u03a6", 'u03a6')
+        row_string += col + ','
+    row_string = row_string[:-1]
+    row_string += '\n'
+    f.write(row_string)
